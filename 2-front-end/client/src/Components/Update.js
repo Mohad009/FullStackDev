@@ -10,7 +10,7 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector,useDispatch } from 'react-redux';
-import { useState} from "react";
+import { useState,useEffect} from "react";
 import { updateUser } from '../Features/UserSlice';
 import { useParams,useNavigate } from 'react-router-dom';
 
@@ -21,11 +21,11 @@ function Update() {
     const user=users.find(u=>u.id===userId)
     const dispatch=useDispatch()
     const navigate=useNavigate()
-    const [id,setId]=useState(user.id)
-    const [name ,setName]=useState(user.name);
-    const [email ,setEmail]=useState(user.email);
-    const [password ,setPassword]=useState(user.password);
-    const [confirmPassword ,setConfirmPass]=useState(user.password);
+    const [id,setId]=useState('')
+    const [name ,setName]=useState('');
+    const [email ,setEmail]=useState('');
+    const [password ,setPassword]=useState('');
+    const [confirmPassword ,setConfirmPass]=useState('');
       //For form validation using react-hook-form
       const {
         register,
@@ -34,14 +34,15 @@ function Update() {
       } = useForm({
         resolver: yupResolver(userSchemaValidation), //Associate your Yup validation schema using the resolver
       });
-    // useEffect(()=>{
-    //     if(user){
-    //         setName(user.name)
-    //         setEmail(user.email)
-    //         setPassword(user.password)
-    //         setConfirmPass(user.password)
-    //     }
-    // })
+    useEffect(()=>{
+        if(user){
+          setId(user.id)
+            setName(user.name)
+            setEmail(user.email)
+            setPassword(user.password)
+            setConfirmPass(user.password)
+        }
+    },[user])
     
           // Handle form submission
           const onSubmit = (data) => {

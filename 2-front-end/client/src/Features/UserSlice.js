@@ -16,10 +16,10 @@ export const userSlice =createSlice({
         updateUser(state,action){
             const user=state.find((u)=>u.id===action.payload.id)
             if (user){
-                user.id=user.action.payload.id
-                user.name=user.action.payload.name;
-                user.email=user.action.payload.email;
-                user.password=user.action.payload.password;
+                user.id=action.payload.id;
+                user.name=action.payload.name;
+                user.email=action.payload.email;
+                user.password=action.payload.password;
             }
         }
     }

@@ -2,7 +2,7 @@ import "./App.css";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import Home from "./Components/Home";
-import { Container, Row, Col } from "reactstrap"; //import the Reactstrap Components
+import { Container, Row} from "reactstrap"; //import the Reactstrap Components
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
 import Profile from "./Components/Profile";
@@ -24,7 +24,7 @@ const App = () => {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/register" element={<Register />}></Route>
-            <Route path="/update/:id" element={<Update />}></Route>
+            <Route path="/update/:userId" element={<Update />}></Route>
       </Routes>
       </Row>
       <Row>

@@ -11,12 +11,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector,useDispatch } from "react-redux";
 import { useState } from "react";
 import { addUser,deleteUser } from "../Features/UserSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
 const Register = () => {
-  const navigate=useNavigate()
   const userList=useSelector((state)=>state.users)
   const [id,setId]=useState("")
   const [name ,setName]=useState("");
@@ -47,14 +46,6 @@ const dispatch=useDispatch()
     const handleDelete=(id)=>{
       dispatch(deleteUser(id))
     }
-
-
-// const HandleUpdate=(id)=>{
-//   navigate(`/update/${id}`)
-
-// }
-
-
 
 
   return (

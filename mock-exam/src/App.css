@@ -1,0 +1,74 @@
+a {
+  text-decoration: none;
+}
+a:link {
+  color: rgb(255, 200, 0);
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 10;
+  margin-left: 10px;
+}
+.navigation {
+  background-color: #9cb380;
+  height: 75px;
+  font-weight: bolder;
+  color: #522a27;
+}
+.footer {
+  display: flex;
+  background-color: #9cb380;
+  height: 100px;
+  color: #522a27;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  flex-shrink: 0;
+}
+
+.main {
+  flex-grow: 1;
+  margin-top: 300px;
+  min-height: 500px;
+}
+
+.error {
+  color: red;
+  font-size: medium;
+}
+.header {
+  display: flex;
+  align-items: center; /* Vertically align items */
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
+.nav {
+  display: flex;
+  align-items: center; /* Vertically align items */
+}
+
+.logo {
+  height: 50px; /* Adjust the logo size as needed */
+}
+
+.nav a {
+  text-decoration: none; /* Remove underline */
+  color: #000; /* Set text color */
+  margin: 0 15px; /* Add spacing between links */
+}
+
+.nav a:hover {
+  color: #007bff; /* Change color on hover (optional) */
+}
