@@ -6,7 +6,7 @@ import {
 } from "reactstrap";
 import { useState ,useEffect} from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver} from "@hookform/resolvers/yup";
 import { productSchemaValidation } from "../Validations/ProductValidations";
 
 //Import the updateProduct reducer from the ProductSlice
@@ -43,6 +43,26 @@ const UpdateProduct = () => {
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
 
+
+
+  //For form validation using react-hook-form
+  const {
+    register,
+    handleSubmit,
+    reset,
+     // Submit the form when this is called
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(productSchemaValidation),
+    defaultValues:{
+      id:id,
+      title:title,
+      price:price,
+      image:image
+    }
+    //Associate your Yup validation schema using the resolver
+  });
+
   useEffect(() => {
     const product = products.find((p) => p.id === parseInt(prodID));
     if (product) {
@@ -50,27 +70,27 @@ const UpdateProduct = () => {
       setTitle(product.title);
       setPrice(product.price);
       setImage(product.images);
+
+      reset({
+        id:product.id,
+        title:product.title,
+        price:product.price,
+        image:product.images
+      })
     }
-  }, [products, prodID]);
-
-  //For form validation using react-hook-form
-  const {
-    register,
-    handleSubmit, // Submit the form when this is called
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(productSchemaValidation), //Associate your Yup validation schema using the resolver
-  });
 
 
-  const onSubmit=(data)=>{
-    alert('Product Updated')
-  }
+  }, [products, prodID,reset]);
+
+
+
+
+
 
   // Handle form submission
-  const handleUpdate = () => {
-    
-    dispatch(updateProduct({id:id,title:title,price:price,images:image}))
+  const handleUpdate = (data) => {
+    dispatch(updateProduct({id:data.id,title:data.title,price:data.price,images:data.image}))
+    alert('Product Updated')
     
     navigate('/manage')
   }
@@ -89,7 +109,7 @@ const UpdateProduct = () => {
           <h4>Update Product</h4>
 
           {/* Execute first the submitForm function and if validation is good execute the handleSubmit function */}
-          <form  onSubmit={handleSubmit(onSubmit)} >
+          <form  onSubmit={handleSubmit(handleUpdate)} >
             <div></div>
             <section>
               <div className="form-group">
@@ -97,8 +117,8 @@ const UpdateProduct = () => {
                   className="form-control"
                   placeholder="Product id..."
                   value={id}
-                  onChange={(e)=>setId(e.target.value)}
                   {...register('id')}
+                  onChange={(e)=>setId(e.target.value)}
 
                 />
 
@@ -112,8 +132,8 @@ const UpdateProduct = () => {
                   id="title"
                   value={title}
                   placeholder="Title..."
-                  onChange={(e)=>setTitle(e.target.value)}
                   {...register('title')}
+                  onChange={(e)=>setTitle(e.target.value)}
 
                 />
 
@@ -127,8 +147,8 @@ const UpdateProduct = () => {
                   id="price"
                   placeholder="Price..."
                   value={price}
-                  onChange={(e)=>setPrice(e.target.value)}
                   {...register('price')}
+                  onChange={(e)=>setPrice(e.target.value)}
 
                 />
                 <p className="error">{errors.price?.message}</p>
@@ -141,15 +161,15 @@ const UpdateProduct = () => {
                   id="image"
                   placeholder="Image URL..."
                   value={image}
-                  onChange={(e)=>setImage(e.target.value)}
                   {...register('image')}
+                  onChange={(e)=>setImage(e.target.value)}
 
                 />
               </div>
 
               <p className="error">{errors.image?.message}</p>
 
-              <Button color="primary" className="button" onClick={handleUpdate}>
+              <Button color="primary" className="button">
                 Save Product
               </Button>
             </section>
