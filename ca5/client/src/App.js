@@ -7,6 +7,7 @@ import { Container, Row } from "reactstrap"; //import the Reactstrap Components
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./Components/Profile";
 import Register from "./Components/Register";
+import Login from "./Components/Login";
 
 
 const App = () => {
@@ -21,6 +22,8 @@ const App = () => {
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/login" element={<Login/>}/>
+            
           </Routes>
         </Row>
         <Row>

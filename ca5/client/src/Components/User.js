@@ -1,12 +1,12 @@
-import user from "../Images/user.png";
-
-
+import { useSelector } from "react-redux";
+import userimg from "../Images/user.png"
 const User = () => {
- 
+  const {user} = useSelector((state) => state.users);
   return (
     <div>
-      <img src={user} className="userImage" alt=""/>
-      <p>User</p>
+      <img src={userimg} className="userImage" alt="avatar"/>
+          <h6>{user?.name}</h6>
+          <h6>{user?.email}</h6>
     </div>
   );
 };

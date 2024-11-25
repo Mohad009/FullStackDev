@@ -35,6 +35,15 @@ const Register = () => {
 
   // Handle form submission
   const onSubmit = (data) => {
+    try{
+      
+      alert("Validation all good")
+      dispatch(registerUser({name:data.name,email:data.email,password:data.password}))
+      navigate('/login')
+    }
+    catch(e){
+      console.log(e)
+    }
   
   };
 
