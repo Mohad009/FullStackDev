@@ -17,7 +17,7 @@ const Posts = () => {
             <Table className="table table-striped">
         <thead></thead>
         <tbody>
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <tr key={post._id}>
               {/* Ensure to add a unique key for each row */}
               <td>{post.email}</td>
